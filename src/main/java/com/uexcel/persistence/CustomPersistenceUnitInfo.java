@@ -62,9 +62,13 @@ public class CustomPersistenceUnitInfo implements PersistenceUnitInfo {
     @Override
     public List<String> getManagedClassNames() {
 
-        return List.of("com.uexcel.entity.Employee",
+        return List.of(
+                "com.uexcel.entity.Employee",
                 "com.uexcel.entity.Project",
-                "com.uexcel.entity.ProjectExecution");
+                "com.uexcel.entity.ProjectExecution",
+                "com.uexcel.entity.LoanAccount",
+                "com.uexcel.entity.CustomerAccount"
+        );
     }
 
     @Override
