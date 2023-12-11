@@ -9,11 +9,14 @@ import java.util.List;
 @Table(name="employee")
 public class Employee {
     @Id
-    @Column( name="employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name="employee_id")
     private long employeeId;
     private String name;
     private String address;
+    @OneToOne(cascade = {CascadeType.REMOVE}, mappedBy = "employee")
+
+    private  ProjectExecution projectExecution;
 
     public long getEmployeeId() {
         return employeeId;
@@ -37,6 +40,14 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public ProjectExecution getProjectExecution() {
+        return projectExecution;
+    }
+
+    public void setProjectExecution(ProjectExecution projectExecution) {
+        this.projectExecution = projectExecution;
     }
 
     @Override

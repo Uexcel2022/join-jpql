@@ -11,12 +11,12 @@ public class ProjectExecution {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long project_execution_id;
 
-    @ManyToOne( cascade = CascadeType.ALL)
-    @JoinColumn(name="project_id")
+    @ManyToOne()
+    @JoinColumn(name="project_id", foreignKey = @ForeignKey(name = "FK_project"))
     private Project project;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @OneToOne()
+    @JoinColumn(name = "employee_id", foreignKey = @ForeignKey(name="FK_employee"))
     private Employee employee;
 
     public long getProject_execution_id() {

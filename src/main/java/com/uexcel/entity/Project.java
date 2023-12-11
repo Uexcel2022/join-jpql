@@ -8,11 +8,14 @@ import java.util.List;
 @Table(name="project")
 public class Project {
     @Id
-    @Column(name="project_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="project_id")
     private Long projectId;
     @Column(name="project_name")
     private String projectName;
+
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "project")
+    private  List<ProjectExecution> projectExecution;
 
     public Long getProjectId() {
         return projectId;
@@ -28,6 +31,14 @@ public class Project {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public List<ProjectExecution> getProjectExecution() {
+        return projectExecution;
+    }
+
+    public void setProjectExecution(List<ProjectExecution> projectExecution) {
+        this.projectExecution = projectExecution;
     }
 
     @Override

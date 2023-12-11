@@ -1,6 +1,7 @@
 package com.uexcel;
 
 import com.uexcel.entity.Employee;
+import com.uexcel.entity.Project;
 import com.uexcel.entity.ProjectExecution;
 import com.uexcel.persistence.CustomEntityManager;
 import jakarta.persistence.EntityManager;
@@ -15,13 +16,48 @@ public class App
         try(EntityManager entityManager = CustomEntityManager.getEntityManager()) {
 
             entityManager.getTransaction().begin();
+//
+//            ProjectExecution pe1 = new ProjectExecution();
+//            ProjectExecution pe2 = new ProjectExecution();
+//
+//            Project project = new Project();
+//            project.setProjectName("POS");
+//
+//
+//            Employee empp1= new Employee();
+//            empp1.setName("Nkechi");
+//            empp1.setAddress("45, Mary land way, Ikeja");
+//
+//            Employee empp2= new Employee();
+//            empp2.setName("Peter");
+//            empp2.setAddress("45, Mary land way, Ikeja");
+//
+//            project.setProjectExecution(List.of(pe1,pe2));
+//            empp1.setProjectExecution(pe1);
+//            empp2.setProjectExecution(pe2);
+//
+//            pe1.setProject(project);
+//            pe1.setEmployee(empp1);
+//            pe2.setProject(project);
+//            pe2.setEmployee(empp2);
+//
+//            entityManager.persist(project);
+//            entityManager.persist(empp1);
+//            entityManager.persist(empp2);
+//            entityManager.persist(pe1);
+//            entityManager.persist(pe2);
+
+
+
+
+
 //            String emp = "SELECT e.employee_id, employee_id FROM ProjectExecution e";
 //            TypedQuery<Object[]> employees = entityManager.createQuery(emp, Object[].class);
 //            employees.getResultList().forEach(objects -> System.out.println(objects[0] +" " + objects[1]));
 //            System.out.println(emp);
 
             ProjectExecution projectExecution = new ProjectExecution();
-             String jpql= "SELECT p FROM ProjectExecution p WHERE p.project.projectId=2";
+             String jpql= "SELECT p FROM ProjectExecution p";
             List<ProjectExecution> reset = entityManager.createQuery(jpql, ProjectExecution.class).getResultList();
             int projectName =0;
             for(ProjectExecution obj: reset){
