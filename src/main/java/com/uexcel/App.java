@@ -2,15 +2,19 @@ package com.uexcel;
 
 import com.uexcel.entity.CustomerAccount;
 import com.uexcel.entity.LoanAccount;
+import com.uexcel.entity.Project;
+import com.uexcel.entity.ProjectExecution;
 import com.uexcel.persistence.CustomEntityManager;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
+import java.util.Objects;
 
 public class App
 {
     public static void main( String[] args ) throws Exception {
-        try(EntityManager entityManager = CustomEntityManager.getEntityManager()) {
+        try (EntityManager entityManager = CustomEntityManager.getEntityManager()) {
 
             entityManager.getTransaction().begin();
 
@@ -30,12 +34,11 @@ public class App
 //            entityManager.persist(customerAccount);
 
 
-
             //Customers Who took loan
 
-            String query = "SELECT l FROM LoanAccount l join l.customerAccount";
-            List<LoanAccount> loan = entityManager.createQuery(query, LoanAccount.class).getResultList();
-            loan.forEach(System.out::println);
+//            String query = "SELECT l FROM LoanAccount l join l.customerAccount";
+//            List<LoanAccount> loan = entityManager.createQuery(query, LoanAccount.class).getResultList();
+//            loan.forEach(System.out::println);
 
 //            String query =
 //                    "SELECT c FROM CustomerAccount c WHERE c.customerAccountId IN " +
@@ -51,7 +54,6 @@ public class App
 //                    "(SELECT p.customerAccount.customerAccountId FROM LoanAccount p)";
 //            List<CustomerAccount> loan = entityManager.createQuery(query, CustomerAccount.class).getResultList();
 //            loan.forEach(System.out::println);
-
 
 
 //
@@ -86,13 +88,25 @@ public class App
 //            entityManager.persist(pe2);
 
 
-
-
-
 //            String emp = "SELECT e.employee_id, employee_id FROM ProjectExecution e";
 //            TypedQuery<Object[]> employees = entityManager.createQuery(emp, Object[].class);
 //            employees.getResultList().forEach(objects -> System.out.println(objects[0] +" " + objects[1]));
 //            System.out.println(emp);
+
+
+//            String jpql = """
+//                    SELECT p.projectName, count(p) FROM Project p\s
+//                    GROUP BY p.projectName
+//                    having p.projectName like  'W%'
+//                    """;
+//            TypedQuery<Object[]> rs = entityManager.createQuery(jpql, Object[].class);
+//            rs.getResultList().forEach(objects -> {
+//                System.out.println(objects[0] +" "+ objects[1]);
+//            });
+
+            TypedQuery<Project> project = entityManager.createNamedQuery("getAllProject", Project.class);
+            project.getResultList().forEach(System.out::println);
+
 //
 //            ProjectExecution projectExecution = new ProjectExecution();
 //             String jpql= "SELECT p FROM ProjectExecution p";

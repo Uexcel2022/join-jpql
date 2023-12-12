@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries(@NamedQuery(name="getAllProject",
+        query = "SELECT p FROM Project  p")) // for multiple queries
 @Table(name="project")
 public class Project {
     @Id
